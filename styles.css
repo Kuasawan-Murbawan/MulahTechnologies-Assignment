@@ -1,0 +1,15 @@
+td {
+  border: 1px solid black;
+  padding: 3px;
+  text-align: center;
+}
+
+tr:hover {
+  background-color: bisque;
+}
+
+#table1-container {
+  text-align: center;
+  margin: 0 auto;
+  width: 80%; /* Adjust the width to your preference */
+}
