@@ -17,7 +17,6 @@ include 'db_connection.php';
 
 <div id="tables-container">
 
-
         <div id="table1-container">
         <h1>Table 1</h1>
         <table>
@@ -29,12 +28,12 @@ include 'db_connection.php';
 
             <?php
 
-                $sql = "SELECT * FROM table1";
-                $result = mysqli_query($conn, $sql);
-                $resultCheck = mysqli_num_rows($result);
+                $sql = "SELECT * FROM table1";  // select all elements in the table1
+                $result = mysqli_query($conn, $sql); // compile the connection
+                $resultCheck = mysqli_num_rows($result); 
 
                 if($resultCheck>0){
-                    while($row = mysqli_fetch_assoc($result)){
+                    while($row = mysqli_fetch_assoc($result)){  // fetch the result and display in a table
                         echo "<tr>";
                         echo "<td>" . $row['Index_'] . "</td>";
                         echo "<td>" . $row['Value_'] . "</td>";
@@ -53,7 +52,10 @@ include 'db_connection.php';
             <div id="table2-container">
             <h1>Table 2</h1>
                 <?php
-                    function getValue($conn, $index){
+
+                    // create a function to get value of each index
+
+                    function getValue($conn, $index){ // user need to pass the connection and the index
                         $sql = "SELECT Value_ FROM table1 WHERE Index_ = '$index'";
                         $result = mysqli_query($conn, $sql);
 
