@@ -4,11 +4,14 @@
     <tr>
       <td>Name</td>
       <td>Email</td>
+      <td>Position Apply</td>
     </tr>
     <tr>
       <td>Muhammad Afiq Husyairi Bin Mohamad Fadzli</td>
       <td>husyairiafiq@gmail.com</td>
+      <td>Software Engineer Intern</td>
     </tr>
+
   </th>
 </table>
 
