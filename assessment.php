@@ -13,95 +13,100 @@ include 'db_connection.php';
 
 <body>
 
-<h1>Table 1</h1>
-
-<div id="table1-container">
-<table>
-
-    <tr>
-        <th>Index</th>
-        <th>Value</th>
-    <tr>
-
-    <?php
-
-        $sql = "SELECT * FROM table1";
-        $result = mysqli_query($conn, $sql);
-        $resultCheck = mysqli_num_rows($result);
-
-        if($resultCheck>0){
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<tr>";
-                echo "<td>" . $row['Index_'] . "</td>";
-                echo "<td>" . $row['Value_'] . "</td>";
-                echo "</tr>";
-            }
-        }else{
-            echo "Result not found.";
-        }
-
-    ?>
-
-</table>
-</div>
 
 
-    <div id="table2-container">
-        <?php
-            function getValue($conn, $index){
-                $sql = "SELECT Value_ FROM table1 WHERE Index_ = '$index'";
-                $result = mysqli_query($conn, $sql);
+<div id="tables-container">
 
-            if ($result) {
-                $row = mysqli_fetch_assoc($result);
-                if ($row) {
-                    return $row['Value_'];
-                } else {
-                    return "Index not found";
-                }
-            } else {
-                return "Query error: " . mysqli_error($conn);
-            }
-            }
-    ?>
 
+        <div id="table1-container">
+        <h1>Table 1</h1>
         <table>
 
-        <tr>
-            <th>Category</th>
-            <th>Value</th>
-        </tr>
+            <tr>
+                <th>Index</th>
+                <th>Value</th>
+            <tr>
 
-        <tr id="alpha-row">
-            <td>Alpha</td>
-            <td>
+            <?php
+
+                $sql = "SELECT * FROM table1";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+
+                if($resultCheck>0){
+                    while($row = mysqli_fetch_assoc($result)){
+                        echo "<tr>";
+                        echo "<td>" . $row['Index_'] . "</td>";
+                        echo "<td>" . $row['Value_'] . "</td>";
+                        echo "</tr>";
+                    }
+                }else{
+                    echo "Result not found.";
+                }
+
+            ?>
+
+        </table>
+        </div>
+
+
+            <div id="table2-container">
+            <h1>Table 2</h1>
                 <?php
-                    echo getValue($conn,'A5')+getValue($conn,'A20');
+                    function getValue($conn, $index){
+                        $sql = "SELECT Value_ FROM table1 WHERE Index_ = '$index'";
+                        $result = mysqli_query($conn, $sql);
+
+                    if ($result) {
+                        $row = mysqli_fetch_assoc($result);
+                        if ($row) {
+                            return $row['Value_'];
+                        } else {
+                            return "Index not found";
+                        }
+                    } else {
+                        return "Query error: " . mysqli_error($conn);
+                    }
+                    }
                 ?>
-            </td>
-        </tr>
 
-        <tr id="beta-row">
-            <td>Beta</td>
-            <td>
-                <?php
-                    echo getValue($conn,'A15')/getValue($conn,'A7');
-                ?>
-            </td>
-        </tr>
+                <table>
 
-        <tr id="charlie-row">
-            <td>Charlie</td>
-            <td>
-                <?php
-                    echo getValue($conn,'A13')*getValue($conn,'A12');
-                ?>
-            </td>
-        </tr>
+                <tr>
+                    <th>Category</th>
+                    <th>Value</th>
+                </tr>
 
-    </table>
-    </div>
+                <tr id="alpha-row">
+                    <td>Alpha</td>
+                    <td>
+                        <?php
+                            echo getValue($conn,'A5')+getValue($conn,'A20');
+                        ?>
+                    </td>
+                </tr>
 
+                <tr id="beta-row">
+                    <td>Beta</td>
+                    <td>
+                        <?php
+                            echo getValue($conn,'A15')/getValue($conn,'A7');
+                        ?>
+                    </td>
+                </tr>
+
+                <tr id="charlie-row">
+                    <td>Charlie</td>
+                    <td>
+                        <?php
+                            echo getValue($conn,'A13')*getValue($conn,'A12');
+                        ?>
+                    </td>
+                </tr>
+
+                </table>
+            </div>
+</div>
 
 </body>
 
